@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
+import Banner from "../components/Banner";
 import styles from "../styles/Home.module.css";
-import Banner from "../public/horizontal_banner.png";
 
 const Home: NextPage = () => {
   return (
@@ -14,12 +14,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to{" "}
-          <a href={process.env.NEXT_PUBLIC_BASE_URL}>David & Neo Show</a>
-        </h1>
-
-        <Image src={Banner} alt="" />
+        {/* <Banner /> */}
 
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
