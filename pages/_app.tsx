@@ -1,46 +1,31 @@
-import "../styles/globals.css";
+import { Grommet } from "grommet";
 import type { AppProps } from "next/app";
-import {
-  Anchor,
-  Box,
-  grommet,
-  Grommet,
-  Header,
-  Menu,
-  Nav,
-  ResponsiveContext,
-} from "grommet";
+import Head from "next/head";
 import React from "react";
+import Header from "../components/Header";
+import Section from "../components/ui/Section";
+import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Grommet theme={grommet}>
-      <Header background="dark-1" pad="medium">
-        <Box direction="row" align="center" gap="small">
-          Resize the page to collapse the Nav into a Menu
-        </Box>
-        <ResponsiveContext.Consumer>
-          {(responsive) =>
-            responsive === "small" ? (
-              <Menu
-                label="Click me"
-                items={[
-                  { label: "This is", onClick: () => {} },
-                  { label: "The Menu", onClick: () => {} },
-                  { label: "Component", onClick: () => {} },
-                ]}
-              />
-            ) : (
-              <Nav direction="row">
-                <Anchor href="#" label="This is" />
-                <Anchor href="#" label="The Nav" />
-                <Anchor href="#" label="Component" />
-              </Nav>
-            )
-          }
-        </ResponsiveContext.Consumer>
-      </Header>
-      <Component {...pageProps} />
+    <Grommet
+      theme={{
+        global: {
+          colors: { brand: "#ffb100" },
+        },
+      }}
+    >
+      <Section>
+        <Head>
+          <title>David &amp; Neo</title>
+          <meta name="description" content="David and Neo Talk" />
+          <meta name="keywords" content="David and Neo, Software Careers" />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+
+        <Header />
+        <Component {...pageProps} />
+      </Section>
     </Grommet>
   );
 }
