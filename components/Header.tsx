@@ -20,7 +20,7 @@ const Header = () => {
         path="/"
         icon={
           <Box height="xxsmall" width="xxsmall">
-            <Image src={logo} alt="logo" />
+            <Image src={logo} alt="logo" quality="1" />
           </Box>
         }
         label={size !== "small" && <Text size="xlarge">DAVID&amp;NEO</Text>}

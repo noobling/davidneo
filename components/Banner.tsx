@@ -6,7 +6,7 @@ import { Box } from "grommet";
 export default function Banner() {
   return (
     <Box width="xlarge" pad="large">
-      <Image src={BannerLink} alt="" />
+      <Image src={BannerLink} alt="" quality="1" />
     </Box>
   );
 }
