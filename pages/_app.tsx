@@ -6,15 +6,11 @@ import Header from "../components/Header";
 import Section from "../components/ui/Section";
 import "../styles/globals.css";
 
+import dankTheme from "../themes/dankTheme";
+
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <Grommet
-      theme={{
-        global: {
-          colors: { brand: "#ffb100" },
-        },
-      }}
-    >
+    <Grommet theme={dankTheme}>
       <Section>
         <Head>
           <title>David &amp; Neo</title>

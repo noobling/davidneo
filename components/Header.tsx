@@ -1,14 +1,8 @@
-import {
-  Box,
-  Button,
-  ResponsiveContext,
-  RoutedAnchor,
-  RoutedButton,
-  Text,
-} from "grommet";
+import { Box, Button, ResponsiveContext, RoutedAnchor, Text } from "grommet";
 import React from "react";
 import Image from "next/image";
 import logo from "../public/logo-rounded.png";
+import SocialMedia from "./SocialMedia";
 
 const Header = () => {
   const size = React.useContext(ResponsiveContext);
@@ -32,17 +26,7 @@ const Header = () => {
         label={size !== "small" && <Text size="xlarge">DAVID&amp;NEO</Text>}
       />
 
-      <Button plain>
-        {({ hover }: any) => (
-          <Box
-            pad={{ vertical: "small", horizontal: "medium" }}
-            round="xlarge"
-            background={hover ? "active" : "control"}
-          >
-            <Text>Subscribe</Text>
-          </Box>
-        )}
-      </Button>
+      <SocialMedia />
     </Box>
   );
 };
