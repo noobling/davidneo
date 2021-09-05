@@ -20,6 +20,10 @@ provider:
   stage: ${self:custom.stage}
   region: ap-southeast-2
   profile: davidneo
+  iamRoleStatements:
+    - Effect: Allow # Allow all for easier dev
+      Action: appsync:*
+      Resource: "*"
 
 functions:
   hello:

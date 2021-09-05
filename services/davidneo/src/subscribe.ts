@@ -20,5 +20,5 @@ export const handler = async (event) => {
 
   console.log(result);
 
-  return result;
+  return true;
 };
