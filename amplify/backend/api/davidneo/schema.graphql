@@ -1,0 +1,17 @@
+type Subscriber
+  @model
+  @auth(
+    rules: [
+      { allow: private, provider: iam } # lambdas use iam auth type
+    ]
+  ) {
+  id: ID!
+  email: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type Mutation {
+  subscribe(email: String!): Boolean!
+    @function(name: "davidneo-${env}-subscribe")
+}

@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-davidneo-dev-84454-authRole",
+      "UnauthRoleArn": "arn:aws:iam::948990252857:role/amplify-davidneo-dev-84454-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::948990252857:role/amplify-davidneo-dev-84454-authRole",
+      "Region": "ap-southeast-2",
+      "DeploymentBucketName": "amplify-davidneo-dev-84454-deployment",
+      "UnauthRoleName": "amplify-davidneo-dev-84454-unauthRole",
+      "StackName": "amplify-davidneo-dev-84454",
+      "StackId": "arn:aws:cloudformation:ap-southeast-2:948990252857:stack/amplify-davidneo-dev-84454/01f6abb0-06d0-11ec-a71e-02c95f0d8e2c",
+      "AmplifyAppId": "d2ylsx6i7rfjy9"
+    },
+    "categories": {
+      "auth": {
+        "davidneode4f8146": {}
+      }
+    }
+  }
+}
