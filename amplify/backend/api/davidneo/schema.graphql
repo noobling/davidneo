@@ -4,7 +4,8 @@ type Subscriber
     rules: [
       { allow: private, provider: iam } # lambdas use iam auth type
     ]
-  ) {
+  )
+  @key(fields: ["email"]) {
   id: ID!
   email: String!
   createdAt: AWSDateTime!
@@ -12,6 +13,17 @@ type Subscriber
 }
 
 type Mutation {
-  subscribe(email: String!): Boolean!
+  subscribe(email: String!): SubscribeResponse!
     @function(name: "davidneo-${env}-subscribe")
+}
+
+enum SubscribeStatus {
+  SUCCESS
+  FAIL
+  EXISTS
+}
+
+type SubscribeResponse {
+  status: SubscribeStatus!
+  message: String
 }

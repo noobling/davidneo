@@ -4,7 +4,10 @@
 
 export const subscribe = /* GraphQL */ `
   mutation Subscribe($email: String!) {
-    subscribe(email: $email)
+    subscribe(email: $email) {
+      status
+      message
+    }
   }
 `;
 export const createSubscriber = /* GraphQL */ `

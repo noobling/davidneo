@@ -1,41 +1,77 @@
-import { Box, Button, Text, TextInput } from "grommet";
-import { useState } from "react";
+import { API } from "aws-amplify";
+import { Box, Button, FormField, Text, TextInput } from "grommet";
+import React, { useState } from "react";
+import { toast } from "react-toastify";
+import { subscribe } from "../src/graphql";
+import Subscribed from "./Subscribed";
 
 const SignUp = () => {
-  const [pageState, setPageState] = useState({
+  const [emailState, setEmailState] = useState({
     value: "",
     focus: false,
   });
+  const [loading, setLoading] = useState(false);
+  const [subscribed, setSubscribed] = useState(false);
+
+  const handleSubscribe = async () => {
+    if (!emailState.value) return;
+    setLoading(true);
+
+    try {
+      await API.graphql({
+        query: subscribe,
+        variables: { email: emailState.value },
+      });
+      setSubscribed(true);
+    } catch {
+      toast.error("Something went wrong please try again later");
+    }
+
+    setLoading(false);
+  };
 
   return (
     <Box justify="between" align="center" alignSelf="center" gap="medium">
-      <Box
-        border={{ side: "bottom", color: pageState.focus ? "focus" : "brand" }}
-        width="large"
-      >
-        <TextInput
-          color="brand"
-          plain
-          placeholder={<Text size="small">your email address</Text>}
-          value={pageState.value}
-          onChange={(event) =>
-            setPageState({ value: event.target.value, focus: true })
-          }
-          onFocus={() => setPageState({ value: pageState.value, focus: true })}
-          onBlur={() => setPageState({ value: pageState.value, focus: false })}
-        />
-      </Box>
-      <Button onClick={() => {}}>
+      {subscribed && <Subscribed />}
+      {!subscribed && (
         <Box
-          round="xlarge"
-          background="brand"
-          pad={{ vertical: "small", horizontal: "medium" }}
+          border={{
+            side: "bottom",
+            color: emailState.focus ? "focus" : "brand",
+          }}
+          width="large"
         >
-          <Text size="small" weight="bold" textAlign="center">
-            Subscribe
-          </Text>
+          <TextInput
+            color="brand"
+            plain
+            placeholder={<Text size="small">your email address</Text>}
+            value={emailState.value}
+            onChange={(event) =>
+              setEmailState({ value: event.target.value, focus: true })
+            }
+            onFocus={() =>
+              setEmailState({ value: emailState.value, focus: true })
+            }
+            onBlur={() =>
+              setEmailState({ value: emailState.value, focus: false })
+            }
+            type="email"
+          />
         </Box>
-      </Button>
+      )}
+      {!subscribed && (
+        <Button onClick={handleSubscribe} disabled={loading}>
+          <Box
+            round="xlarge"
+            background="brand"
+            pad={{ vertical: "small", horizontal: "medium" }}
+          >
+            <Text size="small" weight="bold" textAlign="center">
+              Subscribe
+            </Text>
+          </Box>
+        </Button>
+      )}
     </Box>
   );
 };

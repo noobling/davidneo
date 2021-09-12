@@ -1,24 +1,18 @@
-import Amplify, { API, graphqlOperation } from "aws-amplify";
+import Amplify from "aws-amplify";
 import { Grommet } from "grommet";
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import React, { useEffect } from "react";
+import React from "react";
 import Header from "../components/Header";
 import Section from "../components/ui/Section";
-import "../styles/globals.css";
 import awsconfig from "../src/aws-exports.cached";
-
+import "../styles/globals.css";
 import dankTheme from "../themes/dankTheme";
-import { subscribe } from "../src/graphql/mutations";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 Amplify.configure(awsconfig);
 function MyApp({ Component, pageProps }: AppProps) {
-  useEffect(() => {
-    API.graphql({
-      query: subscribe,
-      variables: { email: "ehllo@gmail.com" },
-    });
-  }, []);
-
   return (
     <Grommet theme={dankTheme}>
       <Section>
@@ -32,7 +26,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Header />
         <Component {...pageProps} />
       </Section>
-      w3e
+      <ToastContainer />
     </Grommet>
   );
 }

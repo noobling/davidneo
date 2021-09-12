@@ -2,6 +2,19 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
+export type SubscribeResponse = {
+  __typename: "SubscribeResponse",
+  status: SubscribeStatus,
+  message?: string | null,
+};
+
+export enum SubscribeStatus {
+  SUCCESS = "SUCCESS",
+  FAIL = "FAIL",
+  EXISTS = "EXISTS",
+}
+
+
 export type CreateSubscriberInput = {
   id?: string | null,
   email: string,
@@ -10,7 +23,6 @@ export type CreateSubscriberInput = {
 };
 
 export type ModelSubscriberConditionInput = {
-  email?: ModelStringInput | null,
   createdAt?: ModelStringInput | null,
   updatedAt?: ModelStringInput | null,
   and?: Array< ModelSubscriberConditionInput | null > | null,
@@ -67,14 +79,14 @@ export type Subscriber = {
 };
 
 export type UpdateSubscriberInput = {
-  id: string,
-  email?: string | null,
+  id?: string | null,
+  email: string,
   createdAt?: string | null,
   updatedAt?: string | null,
 };
 
 export type DeleteSubscriberInput = {
-  id: string,
+  email: string,
 };
 
 export type ModelSubscriberFilterInput = {
@@ -103,6 +115,12 @@ export type ModelIDInput = {
   size?: ModelSizeInput | null,
 };
 
+export enum ModelSortDirection {
+  ASC = "ASC",
+  DESC = "DESC",
+}
+
+
 export type ModelSubscriberConnection = {
   __typename: "ModelSubscriberConnection",
   items?:  Array<Subscriber | null > | null,
@@ -114,7 +132,11 @@ export type SubscribeMutationVariables = {
 };
 
 export type SubscribeMutation = {
-  subscribe: boolean,
+  subscribe:  {
+    __typename: "SubscribeResponse",
+    status: SubscribeStatus,
+    message?: string | null,
+  },
 };
 
 export type CreateSubscriberMutationVariables = {
@@ -163,7 +185,7 @@ export type DeleteSubscriberMutation = {
 };
 
 export type GetSubscriberQueryVariables = {
-  id: string,
+  email: string,
 };
 
 export type GetSubscriberQuery = {
@@ -177,9 +199,11 @@ export type GetSubscriberQuery = {
 };
 
 export type ListSubscribersQueryVariables = {
+  email?: string | null,
   filter?: ModelSubscriberFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
+  sortDirection?: ModelSortDirection | null,
 };
 
 export type ListSubscribersQuery = {
